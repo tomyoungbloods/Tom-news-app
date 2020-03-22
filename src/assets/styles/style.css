@@ -1,0 +1,8 @@
+body {
+    font-family: 'Roboto';
+}
+
+.v-list-item__icon {
+
+    padding-right: 20px;
+}
