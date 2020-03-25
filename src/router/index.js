@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Profile from '@/components/User/Profile';
 import Signin from '@/components/User/Signin';
 import Signup from '@/components/User/Signup';
+import * as firebase from 'firebase';
 
 Vue.use(Router)
 
@@ -18,7 +19,8 @@ export default new Router({
         {
             path: '/profile',
             name: 'Profile',
-            component: Profile   
+            component: Profile,
+            meta: {requiresAuth: true}   
         },
         {
             path: '/Signin',
@@ -31,6 +33,18 @@ export default new Router({
             component: Signup   
         }
     ],
-    mode: 'history'
 
+
+    mode: 'history',
+
+    })
+
+    Router.beforeEach((to, from, next)=> {
+        const requiresAuth = to.matched.some(record => record.meta.requiresAuth); //When this route has a parmater it will pass
+        const isAuthenticated = firebase.auth().currentUser;
+        if (requiresAuth && !isAuthenticated){
+            next("/signin");
+        }else{
+            next();
+        }
 })
