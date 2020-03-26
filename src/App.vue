@@ -68,6 +68,7 @@ export default {
         this.loggedIn = !!user;
       })
     },
+    
   data: () => ({
     loggedIn: false,
     drawer: false,
