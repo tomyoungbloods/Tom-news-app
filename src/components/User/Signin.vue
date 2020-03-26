@@ -1,60 +1,66 @@
 <template>
-<v-container>
-    <v-layout>
-        <v-flex xs12 sm6 offstem-sm3>
-            Login
-            <v-card>
-                <v-card-text>
-                    <v-container>
-                        <form @submit.prevent="onSignon">
-                            <v-layout row>
-                                <v-flex xs12>
-                                    <v-text-field
-                                        name="email"
-                                        label="Mail"
-                                        id="email"
-                                        v-model="email"
-                                        type="email"
-                                        required></v-text-field>
-                                </v-flex>
-                            </v-layout>
-                            <v-layout row>
-                                <v-flex xs12>
-                                    <v-text-field
-                                        name="Password"
-                                        label="Password"
-                                        id="password"
-                                        v-model="password"
-                                        type="password"
-                                        required
-                                        ></v-text-field>
-                                </v-flex>
-                            </v-layout>
-                            <!-- <v-layout row>
-                                <v-flex xs12>
-                                    <v-text-field
-                                        name="confirmPassword"
-                                        label="Confirm Password"
-                                        id="confirmPassword"
-                                        v-model="confirmPassword"
-                                        type="password"
-                                        required></v-text-field>
-                                </v-flex>
-                            </v-layout> -->
-                            <v-layout row>
-                                <v-flex xs12>
-                                    <v-btn type="submit">
-                                        Sign up
-                                    </v-btn>
-                                </v-flex>
-                            </v-layout>
-                        </form>
-                    </v-container>
-                </v-card-text>
+  <v-app id="inspire">
+    <v-content>
+      <v-container
+        pa-6
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card class="elevation-12">
+              <v-toolbar
+                dark
+                flat
+              >
+                <v-toolbar-title>Login</v-toolbar-title>
+                <v-spacer />
+                <v-tooltip bottom>
+                  <span>Login</span>
+                </v-tooltip>
+              </v-toolbar>
+                <form @submit.prevent="onSignon">
+                    <v-layout column wrap align-center>
+                        <v-col md="12">
+                        <v-text-field
+                            name="email"
+                            label="Mail"
+                            id="email"
+                            v-model="email"
+                            type="email"
+                            required></v-text-field>
+                        </v-col>
+                        
+                    
+                    <v-col md="12">
+                        <v-text-field
+                            name="Password"
+                            label="Password"
+                            id="password"
+                            v-model="password"
+                            type="password"
+                            required
+                            ></v-text-field>
+                    </v-col>
+                    <v-col md="12">
+                        <v-btn type="submit">
+                            Login
+                        </v-btn>
+                    </v-col>
+                    </v-layout>
+                </form>
             </v-card>
-        </v-flex>
-    </v-layout>
-</v-container>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -73,7 +79,7 @@ export default {
                 async onSignon(){
                     try{
                         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(()=>
-                            this.$router.replace('Profile'))
+                            this.$router.replace('/overzicht-opdrachten'))
                     }catch(err){
                         console.log(err)
                     }

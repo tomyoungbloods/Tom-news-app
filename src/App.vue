@@ -3,7 +3,6 @@
     class="mx-auto overflow-hidden"
     >
     <v-app-bar
-      color="deep-purple accent-4"
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>

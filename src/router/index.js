@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Profile from '@/components/User/Profile';
 import Signin from '@/components/User/Signin';
 import Signup from '@/components/User/Signup';
+import OverzichtOpdrachten from '@/components/User/Overzicht-opdrachten';
 import * as firebase from 'firebase';
 
 Vue.use(VueRouter)
@@ -22,14 +23,22 @@ const routes = [
         meta: {requiresAuth: true}   
     },
     {
+        path: '/overzicht-opdrachten',
+        name: 'OverzichtOpdrachten',
+        component: OverzichtOpdrachten,
+        meta: {requiresAuth: true}   
+    },
+    {
         path: '/Signin',
         name: 'Signin',
-        component: Signin   
+        component: Signin,  
+        meta: {requiresAuth: false}   
     },
     {
         path: '/Signup',
         name: 'Signup',
-        component: Signup   
+        component: Signup,
+        meta: {requiresAuth: false}     
     }
 ]
 
