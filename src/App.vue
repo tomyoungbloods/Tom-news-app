@@ -1,5 +1,5 @@
 <template>
-  <v-card
+  <v-flex
     class="mx-auto overflow-hidden"
     >
     <v-app-bar
@@ -52,7 +52,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-container style="height: 1000px;"><router-view></router-view></v-container>
-  </v-card>
+  </v-flex>
   
 </template>
 
