@@ -9,21 +9,19 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title><router-link to="/" tag=span style="cursor: pointer;">Waarheid</router-link></v-toolbar-title>
-
-      <v-spacer></v-spacer>
+      
+      <v-spacer></v-spacer><span v-if="loggedIn">Aangemeld</span><span v-else>Afgemeld</span><v-spacer></v-spacer>
 
       <v-btn icon>
         <router-link to="/profile" tag=span style="cursor: pointer;"><v-icon>mdi-account</v-icon></router-link>
       </v-btn>
-      <div>
-        Logged in
-        <span v-if="loggedIn">Yes</span>
-        <span v-else>No</span>
-
-        <v-btn icon @click="signOut">
-          SignOut
+      <div >  
+        <v-btn v-if="!loggedIn" to="/signin" > 
+          Log in
         </v-btn>
-
+        <v-btn v-if="loggedIn" @click="signOut" >
+          Meld af
+        </v-btn>
       </div>
 
 
@@ -66,7 +64,13 @@
 <script>
 import * as firebase from 'firebase'
 export default {
+  created() {
+      firebase.auth().onAuthStateChanged(user=> {
+        this.loggedIn = !!user;
+      })
+    },
   data: () => ({
+    loggedIn: false,
     drawer: false,
     menuItems: [
     {icon: 'mdi-home', title: 'Mijn account', link: '/home' },
@@ -75,26 +79,19 @@ export default {
     ],
     
   }),
-    created() {
-      firebase.auth().onAuthStateChanged(user=>{
-          this.loggedIn = !!user;
-      })
-    },
+    
     methods: {
       async signOut(){
         try{
           const data = await firebase.auth().signOut();
-          this.$router.replace({name: "signin"}) //Redirect to signin page
+          this.$router.replace({name: "Signin"}) //Redirect to signin page
           console.log(data);
         }catch(err){
           console.log(err);
         }
-        
-        
       }
-
-  }
-
-};
+    }
+      
+    };
 
 </script>

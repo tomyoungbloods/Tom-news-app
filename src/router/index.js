@@ -1,45 +1,45 @@
-import Router from 'vue-router'
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import Home from '@/components/Home'
 import Profile from '@/components/User/Profile';
 import Signin from '@/components/User/Signin';
 import Signup from '@/components/User/Signup';
 import * as firebase from 'firebase';
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+const routes = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home,
+        meta: {requiresAuth: true}   
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile,
+        meta: {requiresAuth: true}   
+    },
+    {
+        path: '/Signin',
+        name: 'Signin',
+        component: Signin   
+    },
+    {
+        path: '/Signup',
+        name: 'Signup',
+        component: Signup   
+    }
+]
 
-    routes: [
-        {
-            path: '/',
-            name: 'Home',
-            component: Home
-        },
-        {
-            path: '/profile',
-            name: 'Profile',
-            component: Profile,
-            meta: {requiresAuth: true}   
-        },
-        {
-            path: '/Signin',
-            name: 'Signin',
-            component: Signin   
-        },
-        {
-            path: '/Signup',
-            name: 'Signup',
-            component: Signup   
-        }
-    ],
-
-
+const router = new VueRouter({
     mode: 'history',
+    base: process.env.BASE_URL,
+    routes
+})
 
-    })
-
-    Router.beforeEach((to, from, next)=> {
+    router.beforeEach((to, from, next)=> {
         const requiresAuth = to.matched.some(record => record.meta.requiresAuth); //When this route has a parmater it will pass
         const isAuthenticated = firebase.auth().currentUser;
         if (requiresAuth && !isAuthenticated){
@@ -48,3 +48,8 @@ export default new Router({
             next();
         }
 })
+
+export default router
+
+
+

@@ -27,7 +27,7 @@
                                         v-model="password"
                                         type="password"
                                         required
-                                        :rules="[comparePasswords]"></v-text-field>
+                                        ></v-text-field>
                                 </v-flex>
                             </v-layout>
                             <!-- <v-layout row>
@@ -68,22 +68,16 @@ export default {
             password: '',
         }
     },
-    computed: {
-        comparePasswords () {
-            return this.password !== this.confirmPassword ? 'De wachtwoorden komen niet overeen' : ''
-        } 
-    },
+
     methods: {
-        async onSignon(){
-            try{
-                const val = firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-                console.log(val)
-                this.$router.replace({name: "/home"})
-            }catch(err){
-                console.log(err)
-            }
-             
-            }
-            }
+                async onSignon(){
+                    try{
+                        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(()=>
+                            this.$router.replace('Profile'))
+                    }catch(err){
+                        console.log(err)
+                    }
+                }
+                }
             }
 </script>
