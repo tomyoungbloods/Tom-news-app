@@ -8,7 +8,7 @@ import router from './router/index.js'
 
 Vue.config.productionTip = false
 
-
+Vue.config.devtools = true
 
   // Your web app's Firebase configuration
   const firebaseConfig = {

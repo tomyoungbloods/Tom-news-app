@@ -13,20 +13,17 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: Home,
-        meta: {requiresAuth: true}   
+        component: Home
     },
     {
         path: '/profile',
         name: 'Profile',
-        component: Profile,
-        meta: {requiresAuth: true}   
+        component: Profile
     },
     {
         path: '/overzicht-opdrachten',
         name: 'OverzichtOpdrachten',
-        component: OverzichtOpdrachten,
-        meta: {requiresAuth: true}   
+        component: OverzichtOpdrachten
     },
     {
         path: '/Signin',
