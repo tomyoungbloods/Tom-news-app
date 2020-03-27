@@ -1,5 +1,5 @@
 <template>
-  <v-flex
+  <v-card
     class="mx-auto overflow-hidden"
     >
     <v-app-bar
@@ -52,7 +52,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-container style="height: 1000px;"><router-view></router-view></v-container>
-  </v-flex>
+  </v-card>
   
 </template>
 
@@ -68,7 +68,6 @@ export default {
         this.loggedIn = !!user;
       })
     },
-    
   data: () => ({
     loggedIn: false,
     drawer: false,
